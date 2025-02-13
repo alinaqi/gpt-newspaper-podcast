@@ -1,5 +1,12 @@
 # GPT Newspaper
 
+> This is a fork of [rotemweiss57/gpt-newspaper](https://github.com/rotemweiss57/gpt-newspaper) with significant improvements:
+> - Integrated Perplexity AI for more accurate and up-to-date news search
+> - Upgraded to use latest GPT models (GPT-4 Turbo) for better content generation
+> - Enhanced error handling and logging throughout the application
+> - Improved JSON response validation and processing
+> - Better date handling in article curation
+
 Welcome to the GPT Newspaper project, an innovative autonomous agent designed to create personalized newspapers tailored to user preferences. GPT Newspaper revolutionizes the way we consume news by leveraging the power of AI to curate, write, design, and edit content based on individual tastes and interests.
 
 ## 🔍 Overview
