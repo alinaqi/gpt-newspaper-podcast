@@ -3,6 +3,7 @@
 > This is a fork of [rotemweiss57/gpt-newspaper](https://github.com/rotemweiss57/gpt-newspaper) with significant improvements:
 > - Integrated Perplexity AI for more accurate and up-to-date news search
 > - Upgraded to use latest GPT models (GPT-4 Turbo) for better content generation
+> - Added AI-powered podcast generation using OpenAI's Text-to-Speech
 > - Enhanced error handling and logging throughout the application
 > - Improved JSON response validation and processing
 > - Better date handling in article curation
@@ -11,7 +12,7 @@ Welcome to the GPT Newspaper project, an innovative autonomous agent designed to
 
 ## 🔍 Overview
 
-GPT Newspaper consists of six specialized sub-agents in LangChain's new [LangGraph Library](https://github.com/langchain-ai/langgraph):
+GPT Newspaper consists of seven specialized sub-agents in LangChain's new [LangGraph Library](https://github.com/langchain-ai/langgraph):
 
 1. **Search Agent**: Scours the web for the latest and most relevant news using Perplexity AI's powerful search capabilities.
 2. **Curator Agent**: Filters and selects news based on user-defined preferences and interests.
@@ -19,7 +20,8 @@ GPT Newspaper consists of six specialized sub-agents in LangChain's new [LangGra
 4. **Critique Agent** Provide feedback to the writer until article is approved.
 5. **Designer Agent**: Layouts and designs the articles for an aesthetically pleasing reading experience.
 6. **Editor Agent**: Constructs the newspaper based on produced articles.
-7. **Publisher Agent** Publishes the newspaper to the frontend or desired service
+7. **Publisher Agent** Publishes the newspaper to the frontend or desired service.
+8. **Podcast Agent**: Transforms articles into an engaging audio podcast using OpenAI's TTS.
 
 Each agent plays a critical role in delivering a unique and personalized newspaper experience.
 
@@ -40,6 +42,7 @@ https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-
 - **Engaging Design**: Enjoy a visually appealing layout and design.
 - **Quality Assurance**: Rigorous editing ensures reliable and accurate news reporting.
 - **User-Friendly Interface**: Easy-to-use platform for setting preferences and receiving your newspaper.
+- **Audio Experience**: Listen to your personalized news as a professionally narrated podcast.
 
 ## 🛠️ How It Works
 
@@ -47,7 +50,8 @@ https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-
 2. **Automated Curation**: The Search Agent uses Perplexity AI to find the latest news, while the Curator Agent selects the most relevant stories.
 3. **Content Creation**: The Writer Agent drafts articles, which are then designed by the Designer Agent.
 4. **Newspaper Design**: The Editor Agent reviews and finalizes the content.
-5. **Delivery**: Users receive their personalized newspaper to their mailbox.
+5. **Podcast Generation**: The Podcast Agent transforms articles into an engaging audio experience.
+6. **Delivery**: Users receive their personalized newspaper with an integrated audio player.
 
 ## 🚀 Getting Started
 
@@ -81,7 +85,7 @@ https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-
    ```sh
     http://localhost:5000/
     ```
-6. Enjoy!
+6. Enjoy your personalized newspaper and podcast!
 
 ## 🤝 Contributing
 

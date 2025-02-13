@@ -6,7 +6,7 @@ from typing import TypedDict, List, Optional, Dict, Any
 from langgraph.graph import StateGraph
 
 # Import agent classes
-from .agents import SearchAgent, CuratorAgent, WriterAgent, DesignerAgent, EditorAgent, PublisherAgent, CritiqueAgent
+from .agents import SearchAgent, CuratorAgent, WriterAgent, DesignerAgent, EditorAgent, PublisherAgent, CritiqueAgent, PodcastAgent
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -23,6 +23,7 @@ class AgentState(TypedDict):
     critique_result: Optional[str]
     message: Optional[str]
     path: Optional[str]
+    podcast: Optional[Dict[str, str]]
 
 class MasterAgent:
     def __init__(self):
@@ -44,6 +45,7 @@ class MasterAgent:
         designer_agent = DesignerAgent(self.output_dir)
         editor_agent = EditorAgent(layout)
         publisher_agent = PublisherAgent(self.output_dir)
+        podcast_agent = PodcastAgent(self.output_dir)
         logger.info("All agents initialized successfully")
 
         # Define a Langchain graph
@@ -100,7 +102,8 @@ class MasterAgent:
                     "summary": None, 
                     "critique_result": None, 
                     "message": None, 
-                    "path": None
+                    "path": None,
+                    "podcast": None
                 }), 
                 queries
             ))
@@ -110,6 +113,36 @@ class MasterAgent:
         logger.info("Compiling final newspaper")
         newspaper_html = editor_agent.run(parallel_results)
         newspaper_path = publisher_agent.run(newspaper_html)
-        logger.info(f"Newspaper published at: {newspaper_path}")
+
+        # Generate podcast from the articles
+        logger.info("Generating podcast from articles")
+        podcast_result = podcast_agent.run(parallel_results)
+        if podcast_result:
+            # Update the newspaper HTML to include the audio player
+            newspaper_html = self.add_audio_player_to_html(newspaper_html, podcast_result["podcast_path"])
+            newspaper_path = publisher_agent.run(newspaper_html)
+            logger.info(f"Newspaper with podcast published at: {newspaper_path}")
+        else:
+            logger.error("Failed to generate podcast")
 
         return newspaper_path
+
+    def add_audio_player_to_html(self, html: str, audio_path: str) -> str:
+        """Add an audio player to the HTML content"""
+        # Get the relative path from the newspaper file to the audio file
+        relative_audio_path = os.path.relpath(audio_path, self.output_dir)
+        
+        # Create the audio player HTML
+        audio_player = f"""
+        <div class="podcast-section" style="margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 8px;">
+            <h2 style="color: #333; margin-bottom: 15px;">📻 Listen to the News Podcast</h2>
+            <audio controls style="width: 100%;">
+                <source src="{relative_audio_path}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        """
+        
+        # Insert the audio player before the closing body tag
+        html = html.replace('</body>', f'{audio_player}</body>')
+        return html
