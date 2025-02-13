@@ -132,17 +132,18 @@ class MasterAgent:
         # Get the relative path from the newspaper file to the audio file
         relative_audio_path = os.path.relpath(audio_path, self.output_dir)
         
-        # Create the audio player HTML
+        # Create the audio player HTML with improved styling
         audio_player = f"""
-        <div class="podcast-section" style="margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 8px;">
-            <h2 style="color: #333; margin-bottom: 15px;">📻 Listen to the News Podcast</h2>
-            <audio controls style="width: 100%;">
+        <div class="podcast-section" style="margin: 0 0 40px 0; padding: 30px; background: linear-gradient(145deg, #2c3e50, #3498db); border-radius: 12px; color: white;">
+            <h2 style="color: white; margin-bottom: 20px; font-size: 24px;">🎙️ GPT Podcast - Today's News Discussion</h2>
+            <p style="margin-bottom: 15px; color: #e0e0e0;">Join Alex, Lia, and Ray as they discuss today's top stories</p>
+            <audio controls style="width: 100%; margin-top: 10px;">
                 <source src="{relative_audio_path}" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
         </div>
         """
         
-        # Insert the audio player before the closing body tag
-        html = html.replace('</body>', f'{audio_player}</body>')
+        # Insert the audio player after the opening body tag
+        html = html.replace('<body>', f'<body>{audio_player}')
         return html

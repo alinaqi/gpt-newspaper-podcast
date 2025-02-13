@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Custom Newspaper</title>
+    <title>GPT Podcaster</title>
     <link rel="stylesheet" href="static/styles.css">
     <link rel="icon" type="image/x-icon" href="static/favicon.ico">
 </head>
@@ -11,39 +11,33 @@
     <div class="container">
         <header>
             <div class="header-content">
-                <h1>Gpt Newspaper</h1>
+                <h1>GPT Podcaster</h1>
             </div>
-            <p class="powered-by">Powered by <a href="https://tavily.com" target="_blank">Tavily</a></p>
-            <p class = "topics-interest">Type topics of interest and get your personalized newspaper</p>
-
+            <p class="topics-interest">Type topics of interest and get your personalized newspaper with AI-powered podcast</p>
         </header>
 
         <section class="topic-selection">
             <form id="topicForm">
                 <div class="form-group" id="topicGroup1">
-                    <input class = "inputText" type="text" id="topic1" name="topic1" required>
+                    <input class="inputText" type="text" id="topic1" name="topic1" required>
                     <span class="icon add-topic">---</span>
                     <span class="icon remove-topic">-</span>
                 </div>
             </form>
-    <p class = "layout">Select newspaper layout</p>
+    <p class="layout">Select newspaper layout</p>
     <div class="layouts">
         <img src="static/layout_icons/layout_1.png" alt="Layout 1" class="layout-icon" data-layout="layout_1.html">
         <img src="static/layout_icons/layout_2.png" alt="Layout 2" class="layout-icon" data-layout="layout_2.html">
         <img src="static/layout_icons/layout_3.png" alt="Layout 3" class="layout-icon" data-layout="layout_3.html">
     </div>
 
-            <button type="button" id="produceNewspaper">Produce Newspaper</button>
-
-
+            <button type="button" id="produceNewspaper">Generate News & Podcast</button>
         </section>
 
         <section id="loading" class="hidden">
                 <div class="spinner"></div>
                 <div id="loadingMessages"></div>
         </section>
-
-
 
         <section id="newspaper" class="hidden">
             <!-- The newspaper articles will be populated here -->

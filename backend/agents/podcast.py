@@ -18,14 +18,15 @@ class PodcastAgent:
         
         prompt = [{
             "role": "system",
-            "content": "You are a professional podcast script writer. Create an engaging podcast script from newspaper articles. "
-                      "The script should flow naturally and include transitions between topics. Use conversational language "
-                      "and make it engaging for listeners."
+            "content": "You are writing a script for 'GPT Podcast'. The show has three hosts: Alex (male), Lia (female), and Ray (male). "
+                      "Create a natural, engaging conversation between these hosts as they discuss the news. "
+                      "Format the script with clear speaker labels (ALEX:, LIA:, RAY:). Start with a welcome to GPT Podcast. "
+                      "Make the conversation dynamic with hosts building on each other's points."
         }, {
             "role": "user",
-            "content": f"Create a podcast script from these articles: {str(articles)}\n"
-                      f"Format it as a natural conversation, with clear introductions and transitions between topics. "
-                      f"Make it engaging and easy to listen to."
+            "content": f"Create a podcast script discussing these articles: {str(articles)}\n"
+                      f"Start with 'ALEX: Welcome to GPT Podcast!' and maintain a natural conversation flow between the three hosts. "
+                      f"Make sure each host contributes roughly equally to the discussion."
         }]
 
         try:

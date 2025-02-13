@@ -99,7 +99,7 @@ class CuratorAgent:
         try:
             logger.info("Making API request to OpenAI for content curation")
             response = self.client.chat.completions.create(
-                model="gpt-4-turbo-preview",
+                model="gpt-4o-mini",
                 messages=messages,
                 response_format={"type": "json_object"}
             )

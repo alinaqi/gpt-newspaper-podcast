@@ -81,7 +81,14 @@ async function produceNewspaper() {
 function toggleLoading(isLoading) {
     const loadingSection = document.getElementById('loading');
     const loadingMessages = document.getElementById('loadingMessages');
-    const messages = ["Looking for news...", "Curating sources...", "Writing articles...", "Editing final newspaper..."];
+    const messages = [
+        "Looking for news...", 
+        "Curating sources...", 
+        "Writing articles...", 
+        "Editing content...",
+        "Generating podcast...",
+        "Finalizing your personalized news experience..."
+    ];
     loadingMessages.style.fontFamily = "'Gill Sans', sans-serif";
     if (isLoading) {
         loadingSection.classList.remove('hidden');
@@ -94,7 +101,7 @@ function toggleLoading(isLoading) {
             } else {
                 clearInterval(interval);
             }
-        }, 12000);
+        }, 10000);
         loadingSection.dataset.intervalId = interval;
     } else {
         loadingSection.classList.add('hidden');

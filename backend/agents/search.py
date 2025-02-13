@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class SearchAgent:
     def __init__(self):
         self.perplexity_client = OpenAI(
-            api_key=os.getenv("PERPLEXITY_API_KEY"),
+            api_key="<API KEY>",
             base_url="https://api.perplexity.ai"
         )
         logger.info("SearchAgent initialized")
