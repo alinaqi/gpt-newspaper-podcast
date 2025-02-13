@@ -6,7 +6,7 @@ Welcome to the GPT Newspaper project, an innovative autonomous agent designed to
 
 GPT Newspaper consists of six specialized sub-agents in LangChain's new [LangGraph Library](https://github.com/langchain-ai/langgraph):
 
-1. **Search Agent**: Scours the web for the latest and most relevant news.
+1. **Search Agent**: Scours the web for the latest and most relevant news using Perplexity AI's powerful search capabilities.
 2. **Curator Agent**: Filters and selects news based on user-defined preferences and interests.
 3. **Writer Agent**: Crafts engaging and reader-friendly articles.
 4. **Critique Agent** Provide feedback to the writer until article is approved.
@@ -28,7 +28,8 @@ https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-
 ## 🌟 Features
 
 - **Personalized Content**: Get news that aligns with your interests and preferences.
-- **Diverse Sources**: Aggregates content from a wide range of reputable news sources.
+- **Advanced Search**: Utilizes Perplexity AI's state-of-the-art search capabilities for comprehensive and up-to-date news gathering.
+- **Diverse Sources**: Aggregates content from a wide range of reputable news sources, including recent social media discussions.
 - **Engaging Design**: Enjoy a visually appealing layout and design.
 - **Quality Assurance**: Rigorous editing ensures reliable and accurate news reporting.
 - **User-Friendly Interface**: Easy-to-use platform for setting preferences and receiving your newspaper.
@@ -36,7 +37,7 @@ https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-
 ## 🛠️ How It Works
 
 1. **Setting Preferences**: Users input their interests, preferred topics, and news sources.
-2. **Automated Curation**: The Search and Curator Agents find and select news stories.
+2. **Automated Curation**: The Search Agent uses Perplexity AI to find the latest news, while the Curator Agent selects the most relevant stories.
 3. **Content Creation**: The Writer Agent drafts articles, which are then designed by the Designer Agent.
 4. **Newspaper Design**: The Editor Agent reviews and finalizes the content.
 5. **Delivery**: Users receive their personalized newspaper to their mailbox.
@@ -45,8 +46,9 @@ https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-
 
 ### Prerequisites
 
-- Tavily API Key - [Sign Up](https://tavily.com/)
+- Perplexity API Key - [Sign Up](https://www.perplexity.ai/)
 - OpenAI API Key - [Sign Up](https://platform.openai.com/)
+- Tavily API Key - [Sign Up](https://tavily.com/)
 
 ### Installation
 
@@ -56,8 +58,9 @@ https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-
     ```
 2. Export your API Keys
    ```sh
-    export TAVILY_API_KEY=<YOUR_TAVILY_API_KEY>
+    export PERPLEXITY_API_KEY=<YOUR_PERPLEXITY_API_KEY>
     export OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
+    export TAVILY_API_KEY=<YOUR_TAVILY_API_KEY>
     ```
 3. Install Requirements
    ```sh
