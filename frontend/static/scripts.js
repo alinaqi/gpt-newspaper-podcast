@@ -1,4 +1,3 @@
-
 let selectedLayout = 'layout_1.html'; // Default layout
 
 function selectLayout(event) {
@@ -9,8 +8,19 @@ function selectLayout(event) {
     selectedLayout = event.target.getAttribute('data-layout');
 }
 
+async function checkBackendStatus() {
+    try {
+        const response = await fetch('http://localhost:9000/');
+        const data = await response.json();
+        console.log('Backend status:', data);
+        return data.status === 'Running';
+    } catch (error) {
+        console.error('Backend health check failed:', error);
+        return false;
+    }
+}
 
-function produceNewspaper() {
+async function produceNewspaper() {
     var topics = [];
     for (var i = 1; i <= topicCount; i++) {
         var topic = document.getElementById('topic' + i).value.trim();
@@ -24,31 +34,48 @@ function produceNewspaper() {
         return;
     }
 
-        // Show loading animation
-    toggleLoading(true);
+    // Check backend status first
+    const isBackendRunning = await checkBackendStatus();
+    if (!isBackendRunning) {
+        alert('Backend server is not responding. Please try again later.');
+        return;
+    }
 
+    // Show loading animation
+    toggleLoading(true);
 
     const payload = {
         topics: topics,
         layout: selectedLayout
     };
 
-    fetch('http://localhost:8000/generate_newspaper', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload)
-    })
-    .then(response => response.json())
-    .then(data => {
+    console.log('Sending request with payload:', payload);
+
+    try {
+        const response = await fetch('http://localhost:9000/generate_newspaper', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        console.log('Response status:', response.status);
+        const data = await response.json();
+        console.log('Response data:', data);
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to generate newspaper');
+        }
+
         toggleLoading(false);
         displayNewspaper(data);
-    })
-    .catch((error) => {
+    } catch (error) {
         toggleLoading(false);
         console.error('Error:', error);
-    });
+        alert('Error generating newspaper: ' + error.message);
+    }
 }
 
 function toggleLoading(isLoading) {
@@ -75,15 +102,20 @@ function toggleLoading(isLoading) {
     }
 }
 
-
 let topicCount = 1;
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', async (event) => {
     document.getElementById('produceNewspaper').addEventListener('click', produceNewspaper);
     document.querySelectorAll('.layout-icon').forEach(icon => {
         icon.addEventListener('click', selectLayout);
     });
     addIconToLastTopic();
+
+    // Check backend status on page load
+    const isBackendRunning = await checkBackendStatus();
+    if (!isBackendRunning) {
+        alert('Warning: Backend server is not responding. Please make sure it is running.');
+    }
 });
 
 function addIconToLastTopic() {
@@ -130,7 +162,6 @@ function addTopicField() {
 
     addIconToLastTopic();
 }
-
 
 function removeTopicField(event) {
     const topicGroup = event.target.parentElement;

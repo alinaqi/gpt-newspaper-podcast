@@ -1,5 +1,5 @@
 from datetime import datetime
-from langchain.adapters.openai import convert_openai_messages
+from langchain_community.adapters.openai import convert_openai_messages
 from langchain_openai import ChatOpenAI
 
 class CritiqueAgent:
@@ -24,7 +24,7 @@ class CritiqueAgent:
         }]
 
         lc_messages = convert_openai_messages(prompt)
-        response = ChatOpenAI(model='gpt-4', max_retries=1).invoke(lc_messages).content
+        response = ChatOpenAI(model='gpt-4o-mini', max_retries=1).invoke(lc_messages).content
         if response == 'None':
             return {'critique': None}
         else:
