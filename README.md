@@ -96,6 +96,6 @@ GPT Newspaper is an experimental project and provided "as-is" without any warran
 
 For support or inquiries, please reach out to us:
 
-- [Email](mailto:rotem5707@gmail.com)
+- [Email](mailto:ashaheen@workhub.ai)
 
 Join us in redefining the future of news consumption with GPT Newspaper!
