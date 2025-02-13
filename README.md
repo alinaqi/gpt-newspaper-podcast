@@ -26,9 +26,32 @@ GPT Newspaper consists of eight specialized sub-agents in LangChain's new [LangG
 Each agent plays a critical role in delivering a unique and personalized news experience.
 
 <div align="center">
-<img align="center" height="500" src="https://tavily-media.s3.amazonaws.com/gpt-newspaper-architecture.png">
-</div>
 
+```mermaid
+graph TD
+    A[User Input] --> B[Search Agent]
+    B --> C[Curator Agent]
+    C --> D[Writer Agent]
+    D --> E[Critique Agent]
+    E -->|Approved| F[Designer Agent]
+    E -->|Needs Revision| D
+    F --> G[Editor Agent]
+    G --> H[Publisher Agent]
+    G --> I[Podcast Agent]
+    subgraph Parallel Processing
+        B
+        C
+        D
+        E
+        F
+    end
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#ff9,stroke:#333,stroke-width:2px
+    style I fill:#9cf,stroke:#333,stroke-width:2px
+    style H fill:#9cf,stroke:#333,stroke-width:2px
+```
+
+</div>
 
 ## Demo
 https://github.com/assafelovic/gpt-newspaper/assets/91344214/7f265369-1293-4d95-9be5-02070f12c67e
